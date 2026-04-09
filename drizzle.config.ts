@@ -6,6 +6,6 @@ export default defineConfig({
   dialect: "postgresql",
   // @ts-ignore
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
+    connectionString: process.env.DATABASE_URL!,
   },
 });
