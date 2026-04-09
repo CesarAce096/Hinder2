@@ -82,10 +82,10 @@ export async function getDiscoveryCandidates(currentUserId: string, limit = 20):
     // Filter distance
     if (profile.latitude && profile.longitude && candidate.profile.latitude && candidate.profile.longitude) {
       const dist = calculateDistance(
-        profile.latitude,
-        profile.longitude,
-        candidate.profile.latitude,
-        candidate.profile.longitude
+        Number(profile.latitude),
+        Number(profile.longitude),
+        Number(candidate.profile.latitude),
+        Number(candidate.profile.longitude)
       )
       if (dist > profile.maxDistanceKm) continue
     }
@@ -111,10 +111,10 @@ export async function getDiscoveryCandidates(currentUserId: string, limit = 20):
     let distance: number | undefined
     if (profile.latitude && profile.longitude && candidate.profile.latitude && candidate.profile.longitude) {
       distance = calculateDistance(
-        profile.latitude,
-        profile.longitude,
-        candidate.profile.latitude,
-        candidate.profile.longitude
+        Number(profile.latitude),
+        Number(profile.longitude),
+        Number(candidate.profile.latitude),
+        Number(candidate.profile.longitude)
       )
     }
 

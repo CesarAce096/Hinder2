@@ -30,5 +30,5 @@ export async function getSwipeDirection(swiperUserId: string, targetUserId: stri
     ))
     .limit(1)
 
-  return result[0]?.direction || null
+  return (result[0]?.direction as 'like' | 'pass') || null
 }

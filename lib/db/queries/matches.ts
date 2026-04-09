@@ -66,6 +66,7 @@ export async function getMatchesForUser(userId: string): Promise<MatchWithProfil
 
     matchesWithProfiles.push({
       ...record.match,
+      createdAt: record.match.createdAt.toISOString(),
       profile: profileWithPhotos,
     })
   }

@@ -6,9 +6,9 @@ import { LogOut, User, Shield } from 'lucide-react'
 
 export default function Settings() {
   const router = useRouter()
-  const supabase = createClient()
 
   const handleSignOut = async () => {
+    const supabase = createClient()
     await supabase.auth.signOut()
     router.push('/')
   }
