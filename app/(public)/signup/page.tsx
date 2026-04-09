@@ -10,32 +10,25 @@ export default function Signup() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
+
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
-    setMessage('')
     const supabase = createClient()
 
     try {
-      const redirectTo = `${process.env.NEXT_PUBLIC_APP_URL ?? window.location.origin}/login`
-      const { data, error } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
-        options: {
-          emailRedirectTo: redirectTo,
-        },
       })
 
       if (error) {
         setError(error.message)
-      } else if (data?.session) {
-        router.push('/onboarding')
       } else {
-        setMessage('Sign-up successful. Check your email to confirm your account, then log in.')
+        router.push('/onboarding')
       }
     } catch (err) {
       setError('An unexpected error occurred')
@@ -55,11 +48,6 @@ export default function Signup() {
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
               {error}
-            </div>
-          )}
-          {message && (
-            <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded">
-              {message}
             </div>
           )}
           <div>
